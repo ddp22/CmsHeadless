@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CmsHeadless.Models
@@ -19,7 +20,10 @@ namespace CmsHeadless.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-                        modelBuilder.Entity<IdentityUser>().ToTable("User");
+            modelBuilder.Entity<IdentityUser>().ToTable("User");
+            modelBuilder.Entity<IdentityUserRole<string>>().HasNoKey();
+            
+            //modelBuilder.Entity<IdentityUserClaim<string>>();
         }
         public DbSet<Attributes> Attributes { get; set; }
         public DbSet<Category> Category { get; set; }
@@ -36,6 +40,10 @@ namespace CmsHeadless.Models
         public DbSet<ContentLocation> ContentLocation { get; set; }
         public DbSet<Typology> Typology { get; set; }
         public DbSet<AttributesTypology> AttributesTypology { get; set; }
+        public DbSet<IdentityUserClaim<string>> IdentityUserClaim { get; set; }
+        public DbSet<IdentityRole> IdentityRole { get; set; }
+        public DbSet<IdentityUserRole<string>> IdentityUserRole { get; set; }
+        
     }
     
 }
