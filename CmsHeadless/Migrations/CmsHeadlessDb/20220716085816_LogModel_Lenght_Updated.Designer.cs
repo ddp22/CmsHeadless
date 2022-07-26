@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CmsHeadless.Migrations.CmsHeadlessDb
 {
     [DbContext(typeof(CmsHeadlessDbContext))]
-<<<<<<<< HEAD:CmsHeadless/Migrations/CmsHeadlessDb/20220713110130_Add_LogType.Designer.cs
-    [Migration("20220713110130_Add_LogType")]
-    partial class Add_LogType
-========
-    [Migration("20220716075106_LogModel")]
-    partial class LogModel
->>>>>>>> origin/master:CmsHeadless/Migrations/CmsHeadlessDb/20220716075106_LogModel.Designer.cs
+    [Migration("20220716085816_LogModel_Lenght_Updated")]
+    partial class LogModel_Lenght_Updated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -283,19 +278,16 @@ namespace CmsHeadless.Migrations.CmsHeadlessDb
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LogID"), 1L, 1);
 
                     b.Property<string>("LogBrowser")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogBrowserVersion")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LogDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LogDetails")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LogEventLog_eventID")
                         .HasColumnType("int");
@@ -305,16 +297,13 @@ namespace CmsHeadless.Migrations.CmsHeadlessDb
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogNotes")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogOS")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogOSVersion")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -340,17 +329,12 @@ namespace CmsHeadless.Migrations.CmsHeadlessDb
                     b.Property<int>("LogTypeLog_typeID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Log_eventCode")
-                        .HasColumnType("int");
+                    b.Property<string>("Log_eventCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Log_eventDescription")
                         .HasColumnType("nvarchar(max)");
-<<<<<<<< HEAD:CmsHeadless/Migrations/CmsHeadlessDb/20220713110130_Add_LogType.Designer.cs
-
-                    b.Property<int>("Log_typeID")
-                        .HasColumnType("int");
-========
->>>>>>>> origin/master:CmsHeadless/Migrations/CmsHeadlessDb/20220716075106_LogModel.Designer.cs
 
                     b.HasKey("Log_eventID");
 
@@ -367,8 +351,9 @@ namespace CmsHeadless.Migrations.CmsHeadlessDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Log_typeID"), 1L, 1);
 
-                    b.Property<int>("Log_typeCode")
-                        .HasColumnType("int");
+                    b.Property<string>("Log_typeCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Log_typeDescription")
                         .HasColumnType("nvarchar(max)");
@@ -748,11 +733,7 @@ namespace CmsHeadless.Migrations.CmsHeadlessDb
             modelBuilder.Entity("CmsHeadless.Models.LogEvent", b =>
                 {
                     b.HasOne("CmsHeadless.Models.LogType", "LogType")
-<<<<<<<< HEAD:CmsHeadless/Migrations/CmsHeadlessDb/20220713110130_Add_LogType.Designer.cs
-                        .WithMany("LogEvents")
-========
                         .WithMany()
->>>>>>>> origin/master:CmsHeadless/Migrations/CmsHeadlessDb/20220716075106_LogModel.Designer.cs
                         .HasForeignKey("LogTypeLog_typeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -849,11 +830,6 @@ namespace CmsHeadless.Migrations.CmsHeadlessDb
                 {
                     b.Navigation("Content");
 
-<<<<<<<< HEAD:CmsHeadless/Migrations/CmsHeadlessDb/20220713110130_Add_LogType.Designer.cs
-                    b.Navigation("Log");
-
-========
->>>>>>>> origin/master:CmsHeadless/Migrations/CmsHeadlessDb/20220716075106_LogModel.Designer.cs
                     b.Navigation("UserTypology");
                 });
 #pragma warning restore 612, 618
